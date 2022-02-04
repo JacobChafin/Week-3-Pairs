@@ -1,8 +1,11 @@
 package com.techelevator.hr;
 
+import com.techelevator.Billable;
 import com.techelevator.Person;
 
-public class Employee extends Person {
+import java.util.Map;
+
+public class Employee extends Person implements Billable {
 
     private int employeeId;
     private String title;
@@ -65,4 +68,14 @@ public class Employee extends Person {
         this.salary = salary;
     }
 
+
+    @Override
+    public double getBalanceDue(Map<String, Double> servicesRendered) {
+        double total = 0;
+        for (Map.Entry<String, Double> balances : servicesRendered.entrySet()) {
+            total += balances.getValue();
+
+        }
+        return total/2.0;
+    }
 }
